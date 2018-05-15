@@ -1,161 +1,51 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>纪念日</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./main.css" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">   
+        <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">    
+    </head>
 
-<head>
-    <title>纪念日</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <body>
+        <div class="main-content">
+            <div class="header">
+                <div class="title">
+                    <h1>纪念日</h1>
+                </div>
+                <div class="sub-title">
+                    <span class="label">纪念日，把有意义的每天写进区块链。</span>
+                </div>
+                <div class="icon-xingyun">
+                    <span>
+                        <img src="./img/icon-xingyun1.png">
+                    </span>
+                </div>
+            </div>
+            <div class="row clearfix search-memories">
+                <div class="input-group col-md-3 search-condition">
+                    <input type="text" class="form-control" placeholder="请输入日期" id='datetime'/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-search" id="search">查找</button>
+                    </span>
+                </div>
+                <div class="search-results">
+                    <ul id="itemList">
 
-</head>
-
-<body>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
 
     <script type="text/javascript" src="./dist/nebulas.js"></script>
-
     <script type="text/javascript" src="./dist/nebPay.js"></script>
     <script type="text/javascript" src="./jquery-3.3.1.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-
-
-
-    <div class="container">
-        <div class="row clearfix">
-            <div class="col-md-12 column">
-                <div style="text-align: center">
-                    <h1>纪念日，把有意义的每天写进区块链</h1>
-                </div>
-
-                <div class="container-fluid">
-                        <div class="row-fluid">
-                            <div class="span12">
-                                 <span class="label">分隔符</span>
-                                <div class="list-group">
-                                    <a class="list-group-item active">查询纪念日</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                <div class="input-group col-md-3" style="margin-top:20p;margin-left:20px">
-                    <input type="text" class="form-control" placeholder="请输入日期" id=search_title />
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-search" id=search>查找</button>
-
-                    </span>
-                </div>
-
-
-
-            </div>
-            <div class="row clearfix">
-                <div class="col-md-12 column">
-                </div>
-            </div>
-
-            <div style="text-align: center">
-                <h1 id=title></h1>
-            </div>
-
-            <div id=content style="margin-left:20px"></div>
-
-            <div id=author style="text-align: right"></div>
-
-
-
-            <div class="container-fluid">
-                    <div class="row-fluid">
-                        <div class="span12">
-                             <span class="label">分隔符</span>
-                            <div class="list-group">
-                                <a class="list-group-item active">记录纪念日</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            <div class="input-group" style="margin-left:20px">
-                <span class="input-group-addon">日期</span>
-                <input type="text" class="form-control" placeholder="输入标题" id=input_title>
-            </div>
-            <div class="input-group" style="margin-top:20px ;margin-left:20px">
-                <span class="input-group-addon">内容</span>
-                <input type="text" class="form-control" placeholder="今天有什么特别" id=input_content>
-            </div>
-            <div  style="text-align: right;margin-top:20px ">
-                    <button class="btn btn-info" id=post>提交</button>
-            </div>
-           
-
-        </div>
-</body>
-
-
-
-
-
-
-
-<script>
-    "use strict";
-    var dappContactAddress = "n1upTDAHBkapEDKPdjDPXFGhNVjMAsrBjZA";
-    var nebulas = require("nebulas"), Account = Account, neb = new nebulas.Neb();
-    neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"))
-    var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay
-    var nebPay = new NebPay();
-    var serialNumber
-    $("#search").click(function () {
-        if (!$("#search_title").val()) {
-            alter('搜索日期不能为空');
-            return;
-        }
-        $('#content').text("");
-        var from = dappContactAddress
-        var value = "0";
-        var nonce = "0"
-        var gas_price = "1000000"
-        var gas_limit = "20000000"
-        var callFunction = "get";
-        var callArgs = "[\"" + $("#search_title").val() + "\"]";
-        console.log("callFunction:" + callFunction + " callArgs:" + callArgs);
-        var contract = {
-            "function": callFunction,
-            "args": callArgs
-        }
-        neb.api.call(from, dappContactAddress, value, nonce, gas_price, gas_limit, contract).then(function (resp) {
-            var result = resp.result;
-            
-            if (result === 'null' || result.itemList) {
-                $('#content').text("今天还没有人记录，来当第一名吧");
-                $('#title').text("");
-                $('#author').text("");
-                return;
-            }
-            console.log("result : " + result);
-            result = JSON.parse(result);
-            $("#title").text(result.date);
-            $('#content').text("content:  " + result.itemList[0].content);
-            $('#author').text("author：" + result.itemList[0].author);
-        }).catch(function (err) {
-            console.log("error :" + err.message);
-        })
-    })
-    $('#post').click(function () {
-        if (!$("#input_title").val() || !$("#input_content").val()) {
-            alert('时间或者内容不能为空');
-            return;
-        }
-        var to = dappContactAddress;
-        var value = "0.02";
-        var callFunction = "save";
-        var callArgs = "[\"" + $("#input_title").val() + "\",\"" + $("#input_content").val() + "\"]";
-        console.log(callArgs);
-        serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
-            listener: function (resp) {
-                console.log("thecallback is " + resp)
-            }
-        });
-    })
-</script>
+    <script src="https://cdn.bootcss.com/moment.js/2.18.1/moment-with-locales.min.js"></script> 
+    <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="./main.js"></script>
 
 </html>

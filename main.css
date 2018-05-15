@@ -1,0 +1,60 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+.main-content {
+    background-image: url("./img/bg3.jpg");
+    height: 100%;
+}
+.header {
+    text-align: center;
+    padding-top: 10px;
+}
+.title {
+    color: white;
+}
+.sub-title {
+    margin-top: 10px;
+    font-size: 20px;
+}
+.icon-xingyun {
+    margin-top: 0px;
+}
+.icon-xingyun span img {
+    width: 180px;
+}
+.search-condition {
+    position: absolute;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.search-results {
+    display: none;
+}
+.search-results ul {
+    list-style: none;
+    padding: 0 20px;
+    color: white;
+    border: 1px solid #4869;
+    padding-top: 10px;
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    background-color: #334e83;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+.search-results ul li {
+    margin-bottom: 5px;
+    padding: 5px;
+    border-bottom: 1px solid #4869;
+}
+.search-results ul li .item-author {
+    margin: 0;
+    font-size: 12px;
+}
+.new-memory {
+    margin-top:50px;
+}
