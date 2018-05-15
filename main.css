@@ -64,5 +64,20 @@ html, body {
     font-size: 12px;
 }
 .new-memory {
-    margin-top:50px;
+    display: initial;
+}
+.new-memory .new-date {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+.new-memory .new-content {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+.new-memory .new-submit {
+    position: absolute;
+    right: 300px;
+    padding-top: 30px;
 }
