@@ -29,12 +29,25 @@
                     <input type="text" class="form-control" placeholder="请输入日期" id='datetime'/>
                     <span class="input-group-btn">
                         <button class="btn btn-info btn-search" id="search">查找</button>
+                        <button class="btn btn-info btn-add" id="add">新增</button>
                     </span>
                 </div>
                 <div class="search-results">
                     <ul id="itemList">
-
                     </ul>
+                </div>
+                <div class="new-memory">
+                    <div class="input-group col-md-9" style="margin-left:20px">
+                        <span class="input-group-addon">日期</span>
+                        <input type="text" class="form-control" id="input_title">
+                    </div>
+                    <div class="input-group col-md-9" style="margin-top:20px ;margin-left:20px">
+                        <span class="input-group-addon">内容</span>
+                        <input type="text" class="form-control" placeholder="今天有什么特别" id=input_content>
+                    </div>
+                    <div style="text-align: right;margin-top:20px ">
+                        <button class="btn btn-info" id=post>提交</button>
+                    </div>
                 </div>
             </div>
         </div>
