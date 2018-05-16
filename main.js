@@ -25,7 +25,7 @@ $(function () {
     var currentDay = new Date().Format("yyyy-MM-dd");
     $("#input_title").val(currentDay);
 
-    var dappContactAddress = "n1upTDAHBkapEDKPdjDPXFGhNVjMAsrBjZA";
+    var dappContactAddress = "n1hFxmxUFNgCnQzzz5TV4oVcCtSi7jF1PN7";
     var nebulas = require("nebulas"), Account = Account, neb = new nebulas.Neb();
     neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"))
     var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay

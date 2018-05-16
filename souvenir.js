@@ -58,11 +58,11 @@ DayItems.prototype ={
         }
         var a= {};
         
-        for(var i = 0; i < dayItem.itemList.length; i++){
-            if(dayItem.itemList[i].from === from && dayItem.date === date){
-                throw new Error("everyday you can only publish one")
-            }
-        }
+        // for(var i = 0; i < dayItem.itemList.length; i++){
+        //     if(dayItem.itemList[i].from === from && dayItem.date === date){
+        //         throw new Error("everyday you can only publish one")
+        //     }
+        // }
 
         a.author = from;
         a.content = content;
@@ -89,5 +89,5 @@ DayItems.prototype ={
 
 module.exports = DayItems;
 
-//n1jXLkUgaNJRMEWBV4X8aX4N4xhajmkbeLi
-//e62e18ad221974beb38065823c7ac5d97548f1424253408160ee6ab73f288221
+//n1hFxmxUFNgCnQzzz5TV4oVcCtSi7jF1PN7
+//616a28223f395fd1de09c0ed3fb074a3ba9c985ac671c86fdbbb34a364fee3fc
