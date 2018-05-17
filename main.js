@@ -33,7 +33,7 @@ $(function () {
     // neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
 
     //main net for deploy, comment out this when develop
-    var dappContactAddress = "n1hFxmxUFNgCnQzzz5TV4oVcCtSi7jF1PN7";
+    var dappContactAddress = "n1rMRGPsJdoS7jXcfwCCjEMKnm56jtMoQeL";
     var nebulas = require("nebulas"), Account = Account, neb = new nebulas.Neb();
     neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));
 
